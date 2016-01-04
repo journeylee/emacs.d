@@ -53,8 +53,17 @@
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)
+(require 'init-isearch)
+(require 'init-grep)
+(require 'init-uniquify)
+(require 'init-ibuffer)
 
+(require 'init-recentf)
+(require 'init-ido)
+(require 'init-hippie-expand)
 (require 'init-auto-complete)
+
+(require 'init-editing-utils)
 
 (require 'init-git)
 
