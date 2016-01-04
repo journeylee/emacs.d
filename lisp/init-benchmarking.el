@@ -20,4 +20,4 @@ LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
 
 
 
-(provide 'benchmarking)
+(provide 'init-benchmarking)

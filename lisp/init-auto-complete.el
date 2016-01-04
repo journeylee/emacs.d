@@ -61,4 +61,4 @@
 (setq dabbrev-friend-buffer-function 'sanityinc/dabbrev-friend-buffer)
 
 
-(provide 'auto-complete)
+(provide 'init-auto-complete)

@@ -77,4 +77,4 @@
             (setq line-spacing 0)))
 
 
-(provide 'gui-frames)
+(provide 'init-gui-frames)

@@ -5,4 +5,4 @@
 
 (load-theme #'abyss t)
 
-(provide 'themes)
+(provide 'init-themes)

@@ -3,3 +3,8 @@ auto-save-list/*
 elpa/*
 *~
 tramp
+.*.swp
+.*.swo
+#*
+.#*
+._*

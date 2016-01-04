@@ -1,4 +1,4 @@
-(require 'frame-hooks)
+(require 'init-frame-hooks)
 
 (defun fix-up-xterm-control-arrows ()
   (let ((map (if (boundp 'input-decode-map)
@@ -27,4 +27,4 @@
 
 (add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
 
-(provide 'xterm)
+(provide 'init-xterm)

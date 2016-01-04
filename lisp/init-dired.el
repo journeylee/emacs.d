@@ -3,15 +3,13 @@
 
 (setq-default diredp-hide-details-initially-flag nil
               dired-dwim-target t)
-(eval-after-load "dired" '(progn
-  (define-key dired-mode-map (kbd "M-o") 'other-window) ))
 ;; Prefer g-prefixed coreutils version of standard utilities when available
 (let ((gls (executable-find "gls")))
   (when gls (setq insert-directory-program gls)))
 
 (after-load 'dired
-  (require 'dired+)
-  (require 'dired-sort)
+;;  (require 'dired+)
+;;  (require 'dired-sort)
   (when (fboundp 'global-dired-hide-details-mode)
     (global-dired-hide-details-mode -1))
   (setq dired-recursive-deletes 'top)
@@ -23,4 +21,4 @@
   (after-load 'dired
     (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
 
-(provide 'dired)
+(provide 'init-dired)

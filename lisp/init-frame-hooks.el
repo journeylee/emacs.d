@@ -22,4 +22,4 @@ Selectively runs either `after-make-console-frame-hooks' or
                   (run-after-make-frame-hooks sanityinc/initial-frame))))
 
 
-(provide 'frame-hooks)
+(provide 'init-frame-hooks)

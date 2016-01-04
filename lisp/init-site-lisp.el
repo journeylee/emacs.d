@@ -51,4 +51,4 @@ source file under ~/.emacs.d/site-lisp/name/"
    "http://repo.or.cz/w/emacs.git/blob_plain/ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09:/lisp/emacs-lisp/package.el"))
 
 
-(provide 'site-lisp)
+(provide 'init-site-lisp)

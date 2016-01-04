@@ -8,4 +8,4 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-(provide 'exec-path)
+(provide 'init-exec-path)

@@ -9,7 +9,7 @@
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(require 'benchmarking) ;; Measure startup time
+(require 'init-benchmarking) ;; Measure startup time
 
 (defconst *is-a-mac* (eq system-type 'darwin))
 
@@ -22,22 +22,21 @@
 (add-hook 'after-init-hook
           (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
 
-(setq tls-program '("proxychains4 openssl s_client -connect %h:%p -no_ssl2 -ign_eof"))
 ;;----------------------------------------------------------------------
 ;; Boot up config
 ;;----------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(require 'compat)
-(require 'utils)
-(require 'site-lisp) ;; Must come before elpa, as it may provide package.el
+(require 'init-compat)
+(require 'init-utils)
+(require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
-(require 'elpa)
-(require 'exec-path)
+(require 'init-elpa)
+(require 'init-exec-path)
 
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-preload-local.el"
 ;;----------------------------------------------------------------------------
-(require 'preload-local nil t)
+(require 'init-preload-local nil t)
 
 ;;----------------------------------------------------------------------
 ;; Load configs for specific features and modes
@@ -48,16 +47,16 @@
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
 
-(require 'frame-hooks)
-(require 'xterm)
-(require 'themes)
-(require 'osx-keys)
-(require 'gui-frames)
-(require 'dired)
+(require 'init-frame-hooks)
+(require 'init-xterm)
+(require 'init-themes)
+(require 'init-osx-keys)
+(require 'init-gui-frames)
+(require 'init-dired)
 
-(require 'auto-complete)
+(require 'init-auto-complete)
 
-(require 'git)
+(require 'init-git)
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
@@ -75,7 +74,7 @@
 ;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
-(require 'locales)
+(require 'init-locales)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient

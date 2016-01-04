@@ -86,4 +86,4 @@
       (browse-url (concat "file://" file-name)))))
 
 
-(provide 'utils)
+(provide 'init-utils)
