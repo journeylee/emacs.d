@@ -1,0 +1,17 @@
+
+;; ----- smex-history -----
+(
+ list-packages
+ make-directory
+ cd
+ 5x5
+ arp
+ dbx
+ dig
+)
+
+;; ----- smex-data -----
+(
+ (list-packages . 2)
+ (make-directory . 1)
+)

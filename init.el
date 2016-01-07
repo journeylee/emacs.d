@@ -23,6 +23,11 @@
           (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
 
 ;;----------------------------------------------------------------------
+;; Configure proxy if needebd
+;;----------------------------------------------------------------------
+(require 'init-proxy nil t)
+
+;;----------------------------------------------------------------------
 ;; Boot up config
 ;;----------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -59,9 +64,17 @@
 (require 'init-ibuffer)
 
 (require 'init-recentf)
-(require 'init-ido)
+(require 'init-helm)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
+
+;(require 'init-go)
+;(require 'init-php)
+;(require 'init-html)
+;(require 'init-css)
+;(require 'init-csv)
+;(require 'init-python)
+;(require 'init-perl)
 
 (require 'init-editing-utils)
 
