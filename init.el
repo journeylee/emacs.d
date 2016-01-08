@@ -1,113 +1,82 @@
+;; main configuration entry point
+(defvar current-user
+  (getenv
+   (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-;;; This file bootstraps the configuration, which is divided into
-;;; a number of other files.
+(message "Powering up... Be patient, Master %s!" current-user)
 
-(let ((minver "23.3"))
-  (when (version<= emacs-version "23.1")
-    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
-(when (version<= emacs-version "24")
-  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+;; version check, only 24.1 or above, old man got killed
+(when (version< emacs-version "24.1")
+  (error "Require at least GNU Emacs 24.1 to run, but you're running %s" emacs-version))
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(require 'init-benchmarking) ;; Measure startup time
+;;---------------------------------------------------------------------------
+;; Perfomance tunning
+;;----------------------------------------------------------------------------
+;; Always load newest byte code
+(setq load-prefer-newer t)
 
-(defconst *is-a-mac* (eq system-type 'darwin))
-
-;;----------------------------------------------------------------------
-;; Temporarily reduce garbage collection during startup
-;;----------------------------------------------------------------------
-(defconst sanityinc/initial-gc-cons-threshold gc-cons-threshold
-  "Initial value of `gc-cons-threshold' at start-up time.")
+;; recude the frequency of garbage collection by making it happen on each 50MB
+;; of allocate data (the default is on every 0.76MB)
 (setq gc-cons-threshold (* 128 1024 1024))
-(add-hook 'after-init-hook
-          (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
 
-;;----------------------------------------------------------------------
-;; Configure proxy if needebd
-;;----------------------------------------------------------------------
-(require 'init-proxy nil t)
-
-;;----------------------------------------------------------------------
-;; Boot up config
-;;----------------------------------------------------------------------
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(require 'init-compat)
-(require 'init-utils)
-(require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
-;; Calls (package-initialize)
-(require 'init-elpa)
-(require 'init-exec-path)
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
 
 ;;----------------------------------------------------------------------------
-;; Allow users to provide an optional "init-preload-local.el"
+;; Directories
+;; structs stolen from prelude
 ;;----------------------------------------------------------------------------
-(require 'init-preload-local nil t)
+(defvar ju/root-dir user-emacs-directory
+  "The root dir of ju's Emacs configuration set.")
+(defvar ju/core-dir (expand-file-name "core" ju/root-dir)
+  "The core functionality script home.")
+(defvar ju/lang-dir (expand-file-name "lang" ju/root-dir)
+  "The languages supported files, automatically load with extensions.")
+(defvar ju/autosave-dir (expand-file-name "autosave" ju/root-dir)
+  "The auto autosave/history files saved here.")
+(defvar ju/local-dir (expand-file-name "local" ju/root-dir)
+  "This directory is for local configuration.")
+(defvar ju/local-preload-dir (expand-file-name "preload" ju/local-dir)
+  "This is local configuration, that will load before everything else.")
 
-;;----------------------------------------------------------------------
-;; Load configs for specific features and modes
-;;----------------------------------------------------------------------
-(require-package 'wgrep)
-(require-package 'project-local-variables)
-(require-package 'diminish)
-(require-package 'scratch)
-(require-package 'mwe-log-commands)
+(add-to-list 'load-path ju/core-dir)
+(add-to-list 'load-path ju/lang-dir)
+(add-to-list 'load-path ju/local-dir)
 
-(require 'init-frame-hooks)
-(require 'init-xterm)
-(require 'init-themes)
-(require 'init-osx-keys)
-(require 'init-gui-frames)
-(require 'init-dired)
-(require 'init-isearch)
-(require 'init-grep)
-(require 'init-uniquify)
-(require 'init-ibuffer)
+;; preload the personal settings from `ju/local-preload-dir'
+(when (file-exists-p ju/local-preload-dir)
+  (message "Loading local configuration files in %s..." ju/local-preload-dir)
+  (mapc 'load (directory-files ju/local-preload-dir 't "^[^#].*\.el$")))
 
-(require 'init-recentf)
-(require 'init-helm)
-(require 'init-hippie-expand)
-(require 'init-auto-complete)
+(message "Load Ju's core...")
+  
+(require 'ju-package) ;; init elpa env and install use-package
+(require 'ju-automode) ;; automode magic strolen from prelude
+(require 'ju-automode) ;; automode magic strolen from prelude
+(require 'ju-automode) ;; automode magic strolen from prelude
+(require 'ju-automode) ;; automode magic strolen from prelude
 
-;(require 'init-go)
-;(require 'init-php)
-;(require 'init-html)
-;(require 'init-css)
-;(require 'init-csv)
-;(require 'init-python)
-;(require 'init-perl)
+;;##############################
+;; global key bindings
+;;##############################
+;; C-h: backspace, very importent to me!!
+(define-key key-translation-map [?\C-h] [?\C-?])
+;; make C-w act like normal
+(global-set-key (kbd "C-w") 'backward-kill-word)
 
-(require 'init-editing-utils)
+(global-set-key (kbd "C-h") 'delete-backward-char)
 
-(require 'init-git)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "M-h") 'backward-kill-word)
 
-;;----------------------------------------------------------------------------
-;; Variables configured via the interactive 'customize' interface
-;;----------------------------------------------------------------------------
-(when (file-exists-p custom-file)
-  (load custom-file))
+(global-set-key (kbd "s-h") 'help-command)
+(global-set-key (kbd "<s-return>") 'toggle-frame-maximized)
+(global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
+(global-set-key (kbd "s-[") 'windmove-left)
+(global-set-key (kbd "s-]") 'windmove-right)
 
-;;----------------------------------------------------------------------------
-;; Allow users to provide an optional "init-local" containing personal settings
-;;----------------------------------------------------------------------------
-(when (file-exists-p (expand-file-name "init-local.el" user-emacs-directory))
-  (error "Please move init-local.el to ~/.emacs.d/lisp"))
-(require 'init-local nil t)
+(set-default-font "PT Mono 14")
 
-;;----------------------------------------------------------------------------
-;; Locales (setting them earlier in this file doesn't work in X)
-;;----------------------------------------------------------------------------
-(require 'init-locales)
+(set-fontset-font "fontset-default" 'han '("STHeiti"))
 
-;;----------------------------------------------------------------------------
-;; Allow access from emacsclient
-;;----------------------------------------------------------------------------
-;;(require 'server)
-;;(unless (server-running-p)
-;;  (server-start))
-
-(add-hook 'after-init-hook
-          (lambda ()
-            (message "init completed in %.2fms"
-                     (sanityinc/time-subtract-millis after-init-time before-init-time))))
-
-(provide 'init)
+;;; init.el ends here
