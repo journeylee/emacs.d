@@ -38,6 +38,11 @@
   "This directory is for local configuration.")
 (defvar ju/local-preload-dir (expand-file-name "preload" ju/local-dir)
   "This is local configuration, that will load before everything else.")
+(defvar ju/save-dir (expand-file-name "save" ju/root-dir)
+  "This is local configuration, that will load before everything else.")
+
+(unless (file-exists-p ju/save-dir)
+  (make-directory ju/save-dir))
 
 (add-to-list 'load-path ju/core-dir)
 (add-to-list 'load-path ju/lang-dir)
@@ -49,31 +54,26 @@
   (mapc 'load (directory-files ju/local-preload-dir 't "^[^#].*\.el$")))
 
 (message "Load Ju's core...")
-  
-(require 'ju-package) ;; init elpa env and install use-package
-(require 'ju-automode) ;; automode magic strolen from prelude
-(require 'ju-automode) ;; automode magic strolen from prelude
-(require 'ju-automode) ;; automode magic strolen from prelude
-(require 'ju-automode) ;; automode magic strolen from prelude
 
-;;##############################
-;; global key bindings
-;;##############################
-;; C-h: backspace, very importent to me!!
-(define-key key-translation-map [?\C-h] [?\C-?])
-;; make C-w act like normal
-(global-set-key (kbd "C-w") 'backward-kill-word)
+(require 'ju-keybind)	       ; global important keybind to me
+(require 'ju-package)	       ; init elpa env and install use-package
+;; (require 'ju-automode)	       ; automode magic strolen from prelude
+(require 'ju-common)			; common package setup
+(use-package markdown-mode
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (bind-key "M-n" 'open-line-below markdown-mode-map)
+    (bind-key "M-p" 'open-line-above markdown-mode-map))
+  :mode (("\\.markdown$" . markdown-mode)
+         ("\\.md$" . markdown-mode)))
+(use-package php-mode
+  :ensure t)
 
-(global-set-key (kbd "C-h") 'delete-backward-char)
+(use-package js2-mode)
 
-(global-set-key (kbd "M-?") 'mark-paragraph)
-(global-set-key (kbd "M-h") 'backward-kill-word)
-
-(global-set-key (kbd "s-h") 'help-command)
-(global-set-key (kbd "<s-return>") 'toggle-frame-maximized)
-(global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
-(global-set-key (kbd "s-[") 'windmove-left)
-(global-set-key (kbd "s-]") 'windmove-right)
+;; The package is "python" but the mode is "python-mode":
 
 (set-default-font "PT Mono 14")
 
