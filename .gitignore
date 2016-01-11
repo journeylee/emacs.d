@@ -12,3 +12,4 @@ ido.last
 recentf
 init-proxy.el
 .smex-items
+local/*
