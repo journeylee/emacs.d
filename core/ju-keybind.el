@@ -17,5 +17,7 @@
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
 (global-set-key (kbd "s-[") 'windmove-left)
 (global-set-key (kbd "s-]") 'windmove-right)
+(global-set-key (kbd "s-{") 'previous-buffer)
+(global-set-key (kbd "s-}") 'next-buffer)
 
 (provide 'ju-keybind)

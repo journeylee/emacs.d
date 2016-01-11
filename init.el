@@ -57,21 +57,12 @@
 
 (require 'ju-keybind)	       ; global important keybind to me
 (require 'ju-package)	       ; init elpa env and install use-package
-;; (require 'ju-automode)	       ; automode magic strolen from prelude
-(require 'ju-common)			; common package setup
-(use-package markdown-mode
-  :ensure t
-  :defer t
-  :config
-  (progn
-    (bind-key "M-n" 'open-line-below markdown-mode-map)
-    (bind-key "M-p" 'open-line-above markdown-mode-map))
-  :mode (("\\.markdown$" . markdown-mode)
-         ("\\.md$" . markdown-mode)))
-(use-package php-mode
-  :ensure t)
+(require 'ju-common)	       ; common package setup
+(require 'ju-flycheck)	       ; 都说这个好
+(require 'ju-helm)	       ; helm related settings
+(require 'ju-company-mode)     ; company mode settings
+(require 'ju-automode)	       ; automode magic strolen from prelude
 
-(use-package js2-mode)
 
 ;; The package is "python" but the mode is "python-mode":
 

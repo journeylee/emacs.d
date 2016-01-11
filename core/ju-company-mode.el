@@ -1,19 +1,22 @@
 (use-package company
-	     :ensure t
-	     :diminish company-mode
-	     :defer t
-	     :init (add-hook 'after-init-hook 'global-company-mode)
-	     :bind ("C-x C-u" . company-complete)
-	     :config
-	     (progn
-	       (setq company-idle-delay 0.2
-		     company-minimum-prefix-length 2
-		     company-tooltip-align-annotations t
-		     company-show-numbers t
-		     company-require-match nil
-		     company-dabbrev-ignore-case nil
-		     company-dabbrev-downcase nil
-		     company-frontends '(company-pseudo-tooltip-frontend)
-		     )))
+  :ensure t
+  :config (progn
+	    (global-company-mode 1)
+	    (setq company-idle-dely 0.2)
+	    (setq company-show-numbers t)
+	    (setq company-minium-prefix-length 2)
+	    (setq company-dabbrev-downcase nil)
+	    (setq company-auto-complete nil)
+	    (setq company-dabbrev-code-other-buffers 'all)
+	    (setq company-dabbrev-code-everywhere t)
+	    (setq company-dabbrev-code-ignore-case t)
+	    (global-set-key (kbd "C-<tab>") 'company-dabbrev)
+	    (global-set-key (kbd "C-c C-y") 'company-yasnippet)))
+
+(defun complete-or-indent ()
+  (interactive)
+  (if (company-manual-begin)
+      (company-complete-common)
+    (indent-according-to-mode)))
 
 (provide 'ju-company-mode)
