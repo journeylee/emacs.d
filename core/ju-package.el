@@ -1,24 +1,23 @@
-
-;; 8< ---- cut here for init-packages ---- >8
 (require 'cl)
 (require 'package)
 
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa/") t)
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
+(setq package-archives
+      (append package-archives
+              '(("melpa" . "http://melpa.milkbox.net/packages/"))
+              '(("marmalade" . "https://marmalade-repo.org/packages/"))
+              '(("org" . "http://orgmode.org/elpa/"))))
 
 ;; set package-user-dir to be relative to Ju/Root-dir
 (setq package-user-dir (expand-file-name "elpa" ju/root-dir))
 (package-initialize)
 
+(unless package-archive-contents
+  (message "Refreshing ELPA package archives...")
+  (package-refresh-contents))
+
 (unless (package-installed-p 'use-package)
-  (progn
-    (package-refresh-contents)
-    (package-install 'use-package)))
+  (message "`use-package' not found.  Installing...")
+  (package-install 'use-package))
 
 (eval-when-compile
   (require 'use-package))
