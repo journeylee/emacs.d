@@ -39,9 +39,11 @@ is't a *xxx* buffer"
 
   (interactive)
   (next-buffer)
-  (while (string-match-p
+  (while (and
+	  (not (string-equal (buffer-name (current-buffer)) "*scratch*"))
+	  (string-match-p
 	  "^\\*[A-Za-z].*\\*$"
-	  (buffer-name (current-buffer)))
+	  (buffer-name (current-buffer))))
     (next-buffer)))
 
 (defun ju/smart-previous-buffer ()
@@ -49,9 +51,11 @@ is't a *xxx* buffer"
 a *xxx* buffer"
   (interactive)
   (previous-buffer)
-  (while (string-match-p
+  (while (and
+	  (not (string-equal (buffer-name (current-buffer)) "*scratch*"))
+	  (string-match-p
 	  "^\\*[A-Za-z].*\\*$"
-	  (buffer-name (current-buffer)))
+	  (buffer-name (current-buffer))))
     (previous-buffer)))
 
 (defun ju/smart-beginning-of-line ()

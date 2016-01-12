@@ -61,6 +61,7 @@
 (require 'ju-flycheck)	       ; 都说这个好
 (require 'ju-helm)	       ; helm related settings
 (require 'ju-company-mode)     ; company mode settings
+(require 'ju-smartparens)      ; 牛逼闪闪的括号
 (require 'ju-automode)	       ; automode magic strolen from prelude
 
 
