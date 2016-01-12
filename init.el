@@ -58,17 +58,21 @@
 (require 'ju-keybind)	       ; global important keybind to me
 (require 'ju-package)	       ; init elpa env and install use-package
 (require 'ju-common)	       ; common package setup
-(require 'ju-flycheck)	       ; 都说这个好
-(require 'ju-helm)	       ; helm related settings
-(require 'ju-company-mode)     ; company mode settings
-(require 'ju-smartparens)      ; 牛逼闪闪的括号
+(require 'ju-flycheck)	       ; 都说这个好            ;
+(require 'ju-helm)	       ; helm related settings ;
+(require 'ju-company-mode)     ; company mode settings ;
+(require 'ju-smartparens)      ; 牛逼闪闪的括号        ;
 (require 'ju-automode)	       ; automode magic strolen from prelude
-
 
 ;; The package is "python" but the mode is "python-mode":
 
 (set-default-font "PT Mono 14")
 
-(set-fontset-font "fontset-default" 'han '("STHeiti"))
+;; (set-fontset-font "fontset-default" 'han '("STHeiti"))
+
+(set-fontset-font (frame-parameter nil 'font)
+		  'han (font-spec :family "STHeiti"))
+         
+(setq face-font-rescale-alist '(("STHeiti" . 1.2)))
 
 ;;; init.el ends here
