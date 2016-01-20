@@ -63,16 +63,9 @@
 (require 'ju-company-mode)     ; company mode settings ;
 (require 'ju-smartparens)      ; 牛逼闪闪的括号        ;
 (require 'ju-automode)	       ; automode magic strolen from prelude
+(require 'ju-dashdoc)	       ; dash is a super doc reader
+(require 'ju-gui)	       ; make a better gui interface
 
 ;; The package is "python" but the mode is "python-mode":
-
-(set-default-font "PT Mono 14")
-
-;; (set-fontset-font "fontset-default" 'han '("STHeiti"))
-
-(set-fontset-font (frame-parameter nil 'font)
-		  'han (font-spec :family "STHeiti"))
-         
-(setq face-font-rescale-alist '(("STHeiti" . 1.2)))
 
 ;;; init.el ends here
