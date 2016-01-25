@@ -50,7 +50,7 @@
 
 ;; preload the personal settings from `ju/local-preload-dir'
 (when (file-exists-p ju/local-preload-dir)
-  (message "Loading local configuration files in %s..." ju/local-preload-dir)
+  (message "Loading local pre-init files in %s..." ju/local-preload-dir)
   (mapc 'load (directory-files ju/local-preload-dir 't "^[^#].*\.el$")))
 
 (message "Load Ju's core...")
@@ -66,6 +66,16 @@
 (require 'ju-dashdoc)	       ; dash is a super doc reader
 (require 'ju-gui)	       ; make a better gui interface
 
+;; OSX specific settings
+(when (eq system-type 'darwin)
+  (require 'ju-osx))
+
 ;; The package is "python" but the mode is "python-mode":
+
+(setq custom-file (expand-file-name "custom.el" ju/local-dir))
+
+(when (file-exists-p ju/local-dir)
+  (message "Loading local configuration files in %s..." ju/local-dir)
+  (mapc 'load (directory-files ju/local-dir 't "^[^#].*\.el$")))
 
 ;;; init.el ends here
