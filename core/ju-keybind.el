@@ -26,7 +26,7 @@
 (global-set-key (kbd "s-b") 'windmove-left)
 (global-set-key (kbd "s-p") 'windmove-up)
 (global-set-key (kbd "s-n") 'windmove-down)
-(global-set-key (kbd "s-a") (lambda () (windmove-down)))
+(global-set-key (kbd "s-a") 'windmove-left)
 (global-set-key (kbd "s-[") 'windmove-left)
 (global-set-key (kbd "s-]") 'windmove-right)
 
@@ -34,7 +34,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 
 ;; A quick major mode help with discover-my-major
-(define-key 'help-command (kbd "C-m") discover-my-major)
+;; (define-key 'help-command (kbd "C-m") discover-my-major)
 
 (define-key 'help-command (kbd "C-f") 'find-function)
 (define-key 'help-command (kbd "C-k") 'find-function-on-key)

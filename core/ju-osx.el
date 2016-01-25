@@ -8,3 +8,5 @@
 (use-package vkill
   :ensure t
   :bind ("C-x p" . vkill))
+
+(provide 'ju-osx)
