@@ -6,4 +6,9 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
+(use-package moe-theme
+  :ensure t
+  :config (progn
+	    (moe-dark)))
+
 (provide 'ju-gui)
