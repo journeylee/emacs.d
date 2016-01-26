@@ -13,3 +13,6 @@ recentf
 init-proxy.el
 .smex-items
 local/*
+projectile*
+pyim/
+eshell

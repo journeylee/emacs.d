@@ -1,3 +1,6 @@
+
+(setq debug-on-quit nil)
+(setq debug-on-error t)
 ;; main configuration entry point
 (defvar current-user
   (getenv
@@ -58,10 +61,13 @@
 (require 'ju-keybind)	       ; global important keybind to me
 (require 'ju-package)	       ; init elpa env and install use-package
 (require 'ju-common)	       ; common package setup
-(require 'ju-flycheck)	       ; 都说这个好            ;
-(require 'ju-helm)	       ; helm related settings ;
-(require 'ju-company-mode)     ; company mode settings ;
-(require 'ju-smartparens)      ; 牛逼闪闪的括号        ;
+(require 'ju-gui)	       ; gui settings
+(require 'ju-flycheck)	       ; 都说这个好
+(require 'ju-helm)	       ; helm related settings
+(require 'ju-company-mode)     ; company mode settings
+(require 'ju-smartparens)      ; 牛逼闪闪的括号
+(require 'ju-magit)	       ; git 客户端
+(require 'ju-projectile)       ; 好像是火箭
 (require 'ju-automode)	       ; automode magic strolen from prelude
 (require 'ju-dashdoc)	       ; dash is a super doc reader
 (require 'ju-gui)	       ; make a better gui interface

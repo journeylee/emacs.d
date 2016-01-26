@@ -34,4 +34,7 @@
 	 (define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
 	 (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)))
 
+(use-package helm-projectile
+  :ensure t
+  :defer t)
 (provide 'ju-helm)

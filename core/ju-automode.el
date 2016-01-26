@@ -8,7 +8,12 @@
 (defvar ju/auto-mode-alist
   '(("\\.php\\'" ju-php php-mode)
     ("\\.css\\'" ju-css css-mode)
-    ("\\.tpl\\'" ju-tpl web-mode)))
+    ("\\.tpl\\'" ju-webmode web-mode)
+    ("\\.html?\\'" ju-webmode web-mode)
+    ("\\.psp\\'" ju-webmode web-mode)
+    ("tpl/\\.php\\'" ju-webmode web-mode)
+    ("\\.js\\'" ju-javscript js2-mode)
+    ("\\.less\\'" ju-less skewer-mode)))
 
 (mapc
  (lambda (entry)

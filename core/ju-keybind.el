@@ -19,6 +19,8 @@
 (global-set-key (kbd "s-}") 'ju/smart-next-buffer)
 (global-set-key (kbd "C-a") 'ju/smart-beginning-of-line)
 
+(global-set-key (kbd "C-S-k") 'kill-whole-line)
+
 ;; ----------------------------------------------------------------------
 ;; window move relative settings
 ;; ----------------------------------------------------------------------
