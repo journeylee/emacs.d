@@ -39,7 +39,6 @@
 
 (use-package smartparens
   :ensure t
-  :no-require
   :init (progn
 	  (require 'smartparens-config)
 	  (setq sp-base-key-bindings 'paredit)
@@ -90,6 +89,9 @@
 
 (use-package avy
   :ensure t
+  :bind (("C-c j" . avy-goto-word-or-subword-1)
+         ("s-." . avy-goto-word-or-subword-1)
+         ("s-w" . ace-window))
   :init (progn
           (setq avy-background t)
           (setq avy-style 'at-full)))
