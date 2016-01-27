@@ -85,3 +85,4 @@
   (mapc 'load (directory-files ju/local-dir 't "^[^#].*\.el$")))
 
 ;;; init.el ends here
+(put 'erase-buffer 'disabled nil)

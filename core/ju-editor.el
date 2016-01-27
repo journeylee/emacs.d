@@ -38,6 +38,7 @@
 (setq tab-always-indent 'complete)
 
 (use-package smartparens
+  :ensure t
   :no-require
   :init (progn
 	  (require 'smartparens-config)
@@ -87,4 +88,17 @@
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(provide 'ju-editor.el)
+(use-package avy
+  :ensure t
+  :init (progn
+          (setq avy-background t)
+          (setq avy-style 'at-full)))
+
+(use-package anzu
+  :ensure t
+  :diminish anzu-mode
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :init (global-anzu-mode))
+
+(provide 'ju-editor)
