@@ -5,7 +5,7 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 ;; make C-w act like normal
 
-(global-set-key (kbd "C-w") 'backward-kill-word)
+;; (global-set-key (kbd "C-w") 'backward-kill-word)
 
 (global-set-key (kbd "C-h") 'delete-backward-char)
 
@@ -20,6 +20,12 @@
 (global-set-key (kbd "C-a") 'ju/smart-beginning-of-line)
 
 (global-set-key (kbd "C-S-k") 'kill-whole-line)
+(global-set-key (kbd "M-SPC") 'set-mark-command)
+
+(use-package easy-kill
+  :ensure t
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill))
 
 ;; ----------------------------------------------------------------------
 ;; window move relative settings
@@ -67,7 +73,7 @@ a *xxx* buffer"
 	  (not (string-equal (buffer-name (current-buffer)) "*scratch*"))
 	  (string-match-p
 	  "^\\*[A-Za-z].*\\*$"
-	  (buffer-name (current-buffer))))
+	 (buffer-name (current-buffer))))
     (previous-buffer)))
 
 (defun ju/smart-beginning-of-line ()

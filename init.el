@@ -58,8 +58,8 @@
 
 (message "Load Ju's core...")
 
-(require 'ju-keybind)	       ; global important keybind to me
 (require 'ju-package)	       ; init elpa env and install use-package
+(require 'ju-keybind)	       ; global important keybind to me
 (require 'ju-editor)	       ; more powerful editor
 (require 'ju-common)	       ; common package setup
 (require 'ju-gui)	       ; gui settings
