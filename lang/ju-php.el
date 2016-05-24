@@ -12,10 +12,14 @@
   :defer t)
 
 (add-hook 'php-mode-hook
-	  (lambda ()
-	    (company-mode t)
-	    (require 'ac-php-company)
-	    (add-to-list 'company-backends 'company-ac-php-backend)))
+          '(lambda ()
+             (auto-complete-mode t)
+             (require 'ac-php)
+             (setq ac-sources  '(ac-source-php ) )
+             (yas-global-mode 1)
+             (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
+             (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
+             ))
 
 ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (projectile-mode t)
