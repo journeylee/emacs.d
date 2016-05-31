@@ -11,8 +11,13 @@
   :ensure t
   :defer t)
 
+(use-package php-auto-yasnippets
+  :ensure t
+  :bind (:map php-mode-map ("C-c C-y" . yas/create-php-snippet)))
+
 (add-hook 'php-mode-hook
           '(lambda ()
+             (company-mode 0)
              (auto-complete-mode t)
              (require 'ac-php)
              (setq ac-sources  '(ac-source-php ) )
@@ -25,5 +30,5 @@
 (projectile-mode t)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-                        
+
 (provide 'ju-php)

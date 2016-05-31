@@ -103,4 +103,11 @@
          ("C-M-%" . anzu-query-replace-regexp))
   :init (global-anzu-mode))
 
+(use-package guide-key
+  :ensure t
+  :init (progn
+          (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+          (guide-key-mode 1)  ; Enable guide-key-mode
+          ))
+
 (provide 'ju-editor)

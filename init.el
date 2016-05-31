@@ -66,6 +66,7 @@
 (require 'ju-flycheck)	       ; 都说这个好
 (require 'ju-helm)	       ; helm related settings
 (require 'ju-company-mode)     ; company mode settings
+(require 'ju-yasnippet)        ; yasnippet settings
 (require 'ju-magit)	       ; git 客户端
 (require 'ju-projectile)       ; 好像是火箭
 (require 'ju-automode)	       ; automode magic strolen from prelude
