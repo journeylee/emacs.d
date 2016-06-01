@@ -106,7 +106,8 @@
 (use-package guide-key
   :ensure t
   :init (progn
-          (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+          (setq guide-key/guide-key-sequence t)
+          (setq guide-key/popup-window-position 'bottom)
           (guide-key-mode 1)  ; Enable guide-key-mode
           ))
 
