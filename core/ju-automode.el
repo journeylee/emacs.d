@@ -12,7 +12,7 @@
     ("\\.html?\\'" ju-webmode web-mode)
     ("\\.psp\\'" ju-webmode web-mode)
     ("tpl/\\.php\\'" ju-webmode web-mode)
-    ("\\.js\\'" ju-javscript js2-mode)
+    ("\\.js\\'" ju-js js2-mode)
     ("\\.less\\'" ju-less skewer-mode)
     ("\\.go\\'" ju-go go-mode)))
 
